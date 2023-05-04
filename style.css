@@ -107,22 +107,12 @@ nav {
   background-color: #cdcccd;
   border-radius: 50%;
 }
-.user-settings{
-  position: relative;
-  bottom: 0;
-}
-.user-settings>img{
+
+.nav-bar > .right-nav > .user-icon {
   border-radius: 50%;
   width: 30px;
   height: 30px;
 }
-/*
-.user-settings>.settings{
-  position: absolute;
-}
-.manage-profile{
-  position: absolute;
-} */
 
 /* Main container */
 
