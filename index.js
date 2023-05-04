@@ -1,11 +1,27 @@
-const API_KEY = "AIzaSyBHXraFv_VAY2xL9ZianI3jJC5fKteTwLE";
+const API_KEY = "AIzaSyCOA7K4dPK0_PExq4A_De1w_-y5b-iyeik";
 const expandBtn = document.querySelector('.expand-btn');
-let toggle = true;
-
+const userIconButton = document.querySelector('.user-settings').children[0];
 const zonarCard = document.querySelectorAll('.top-scroll-container')
 const searchBtn = document.getElementById('search');
 const videoGridContainer = document.querySelector('.video-grid-container');
+let expandFlag = true;
+let toggle = true;
 
+
+//Functionality for expand settings container when user click on userIcon on right side
+//toggle funciton
+userIconButton.addEventListener('click', () => {
+  const expand = document.querySelector('.settings-section');
+  if (expandFlag) { //if display is none set it to visible
+    expand.style.display = 'block';
+    expandFlag = false;
+  } else {  //if display is already visible display to none
+    expand.style.display = 'none';
+    expandFlag = true;
+  }
+})
+
+//API call to load All video categories
 async function loadVideoCategories() {
   const URL=`https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=${API_KEY}`
   const response = await fetch(URL);
@@ -13,6 +29,7 @@ async function loadVideoCategories() {
   getVideoCategories(videosList.items);
 }
 
+//fetch the all categories
 function getVideoCategories(videosList) {
   const topScrollContainer = document.querySelector('.top-scroll-container');
   topScrollContainer.innerHTML = '';
@@ -29,16 +46,19 @@ function getVideoCategories(videosList) {
 
 
 
+
+// format views functionality
 function formatViewsCount(views) {
   if (views >= 1000000) {
-    return (views / 1000000).toFixed(1) + 'M';
+    return (views / 1000000).toFixed(0) + 'M';
   } else if (views >= 1000) {
-    return (views / 1000).toFixed(1) + 'K';
+    return (views / 1000).toFixed(0) + 'K';
   } else {
-    return views.toString();
+    return views.toString().toFixed(0);
   }
 }
 
+//format timestamp to current time stamp
 function convertTimestampToCurrentTime(timestamp) {
   const givenTime = new Date(timestamp);
   const currentTime = new Date();
@@ -70,11 +90,31 @@ function convertTimestampToCurrentTime(timestamp) {
 
 
 
+async function fetchCategoryVideosById(categoryId) {
+  const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&videoCategoryId=${categoryId}&key=${API_KEY}`;
 
-async function loadVideoItem(channelLogo,thumbnail, { publishedAt, title, channelTitle }, { viewsCount }) {
+  const response = await fetch(apiUrl);
+  const categoryVideoList = await response.json();
+  categoryVideoList.items .forEach(async (item) => {
+    const { publishedAt, channelId, title, channelTitle, publishTime } = item.snippet;
+    const channelLogo = await getChannelLogo(channelId);
+    const thumbnail = item.snippet.thumbnails.medium.url;
+    const videoStats = await getVideoByChannelId(channelId);
+    console.log(videoStats.viewCount);
+    await loadVideoItem(channelLogo,thumbnail,item.snippet,videoStats.viewCount);
+  })
+}
+
+/* when the page loads for cards will be loaded automatically */
+document.addEventListener('DOMContentLoaded', async ()=> {
+  await loadVideoCategories();
+});
+
+//Load the videos based of category
+async function loadVideoItem(channelLogo,thumbnail, { publishedAt, title, channelTitle }, viewCount) {
   const videoCard = document.createElement('div');
   videoCard.className = 'video-card';
-
+  
   const videoThumbnail = document.createElement('img');
   videoThumbnail.src = thumbnail;
   videoCard.append(videoThumbnail);
@@ -104,7 +144,9 @@ async function loadVideoItem(channelLogo,thumbnail, { publishedAt, title, channe
 
   const videoViews = document.createElement('span');
   videoViews.className = 'views';
-  videoViews.innerText = `${formatViewsCount(parseInt(viewsCount))}`;
+  console.log(viewCount);
+  console.log(formatViewsCount(viewCount));
+  videoViews.innerText = `${formatViewsCount(parseInt(viewCount))} Views`;
   const uploadedDate = document.createElement('span');
   uploadedDate.className = 'uploaded-time';
   uploadedDate.innerText = `${convertTimestampToCurrentTime(publishedAt)}`;
@@ -120,21 +162,8 @@ async function loadVideoItem(channelLogo,thumbnail, { publishedAt, title, channe
 
 }
 
-async function fetchCategoryVideosById(categoryId) {
-  const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&videoCategoryId=${categoryId}&key=${API_KEY}`;
 
-  const response = await fetch(apiUrl);
-  const categoryVideoList = await response.json();
-  categoryVideoList.items .forEach(async (item) => {
-    const { publishedAt, channelId, title, channelTitle, publishTime } = item.snippet;
-    const channelLogo = await getChannelLogo(channelId);
-    const thumbnail = item.snippet.thumbnails.medium.url;
-    const videoStats = getVideoByChannelId(channelId);
-    
-    await loadVideoItem(channelLogo,thumbnail,item.snippet,videoStats);
-  })
-}
-
+//Get channel Logo using channel Id
 async function getChannelLogo(channelId) {
   const URL = `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${API_KEY}`;
   const response = await fetch(URL);
@@ -143,12 +172,15 @@ async function getChannelLogo(channelId) {
   return await data.items[0].snippet.thumbnails.medium.url;
 }
 
+//get video statistics using channelId
 async function getVideoByChannelId(channelId) {
   const URL = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${API_KEY}`;
   const response = await fetch(URL);
   const data = await response.json();
   return data.items[0].statistics;
 }
+
+
 async function loadCategoryVideos(event) {
   videoGridContainer.innerHTML = '';
   const categoryId = event.srcElement.id;
@@ -156,10 +188,6 @@ async function loadCategoryVideos(event) {
 
 }
 
-/* when the page loads for cards will be loaded automatically */
-document.addEventListener('DOMContentLoaded', async ()=> {
-  await loadVideoCategories();
-});
 
 
 
@@ -198,3 +226,20 @@ function expandMore(event) {
 }
 
 expandBtn.addEventListener('click', expandMore);
+
+
+
+const btn = document.querySelector('.toggle');
+
+btn.addEventListener('click', () => {
+  document.body.classList.toggle("dark-theme");
+})
+
+
+
+//Shrink left side menu
+
+const hamburgerIcon = document.querySelector('.hamburger-icon');
+hamburgerIcon.addEventListener('click', () => {
+  
+})
