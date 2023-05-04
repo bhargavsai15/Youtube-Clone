@@ -16,7 +16,7 @@ a {
   color: black;
 }
 body {
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .nav-bar {
@@ -27,7 +27,7 @@ body {
 nav {
   position: fixed;
   top: 0;
-  padding: 10px 2%;
+  padding: 5px 2%;
   justify-content: space-between;
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
   background-color: #fff;
@@ -104,20 +104,31 @@ nav {
   padding: 4px;
 }
 .nav-bar > .right-nav > img:hover {
-  background-color: #555;
+  background-color: #cdcccd;
   border-radius: 50%;
 }
-
-.nav-bar > .right-nav > .user-icon {
+.user-settings{
+  position: relative;
+  bottom: 0;
+}
+.user-settings>img{
   border-radius: 50%;
   width: 30px;
   height: 30px;
 }
+/*
+.user-settings>.settings{
+  position: absolute;
+}
+.manage-profile{
+  position: absolute;
+} */
 
 /* Main container */
 
 .container {
   display: flex;
+  margin-bottom: 25%;
 }
 .left-nav-container {
   width: 15%;
@@ -125,13 +136,16 @@ nav {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
+  margin-left: 15px;
   gap: 10px;
   overflow-y: hidden;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 }
-
+.home{
+    margin-top: 20px;
+}
 .left-nav-container:hover {
   overflow: auto;
 }
@@ -160,6 +174,7 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   width: 100px;
+  
 }
 
 .home-container {
@@ -169,6 +184,7 @@ nav {
   overflow: auto;
   height: fit-content;
 }
+
 .item-section {
   display: flex;
   align-items: center;
@@ -208,7 +224,13 @@ nav {
 .item-section > img {
   border-radius: 50%;
 }
+.settings-container{
+  margin-bottom: 30%;
+}
 
+.collapse-container{
+  display: none;
+}
 /* right container styling */
 
 .right-nav-container {
@@ -223,18 +245,29 @@ nav {
   margin: 0px 0px 0px 0px;
 }
 
+/* Top scroll bar styling */
+
+
 .top-scroll-container {
   display: flex;
   gap: 15px;
-  width: 100%;
-  overflow: hidden;
+  width: 82%;
+  margin-right: 30%;
   position: fixed;
-  top: 8.5%;
+  z-index: 100;
+  overflow-y:scroll;
+  top: 7%;
+  scroll-behavior: smooth;
+  padding-left: 10px;
   background-color: white;
 }
 
+.top-scroll-container::-webkit-scrollbar {
+  display: none;
+}
 .zonar-card {
-  margin: 10px 0px;
+  flex-shrink: 0;
+  margin: 15px 0px;
   padding: 10px;
   background-color: #f3f2f3;
   border-radius: 10px;
@@ -243,4 +276,67 @@ nav {
 }
 .zonar-card:hover {
   background-color: #cdcccd;
+  cursor: pointer;
 }
+
+.top-scroll-container>.active{
+  background-color: #0F0F0F;
+  color: white;
+}
+
+
+/* Vidoe container */
+
+.video-container{
+  padding-top: 5%;
+  margin-left: 10px;
+  margin-bottom: 20%;
+}
+.video-container>.video-grid-container{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  row-gap: 25px;
+}
+.video-card{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  width: 300px;
+}
+
+.video-card>img{
+  height: 190px;
+}
+.video-title{
+  display: flex;
+  width: fit-content;
+  gap:10px;
+}
+.video-title>img{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.video-info{
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+.video-info>.title-name{
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #0F0F0F;
+}
+
+.video-info>.light-color{
+  color:#6F6E6E;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+.video-info>.channel-name:hover{
+  cursor: pointer;
+  color: #363535;
+}
+
+
