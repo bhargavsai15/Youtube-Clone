@@ -218,8 +218,8 @@ nav {
   margin-bottom: 30%;
 }
 
-.collapse-container{
-  display: none;
+.statistics-container>.collapse-container{
+  display: none
 }
 /* right container styling */
 

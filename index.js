@@ -185,12 +185,12 @@ function expandMore(event) {
   if (toggle) {
     collapseContainer.style.display = "flex";
     collapseContainer.style.flexFlow = "column";
-    expandBtn.children[0].src = "http://127.0.0.1:5500/JS/Youtube-Clone/assets/asset%2078.svg";
+    expandBtn.children[0].src = "./assets/asset 78.svg";
     expandBtn.children[1].textContent = "Show less";
     toggle = false;
   } else {
     collapseContainer.style.display = "none";
-    expandBtn.children[0].src = "http://127.0.0.1:5500/JS/Youtube-Clone/assets/asset%2077.svg"
+    expandBtn.children[0].src = "./assets/asset 77.svg"
     expandBtn.children[1].textContent = "Show more";
     toggle = true;
   }
