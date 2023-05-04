@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyCOA7K4dPK0_PExq4A_De1w_-y5b-iyeik";
+const API_KEY = "AIzaSyBAcguAnUr3msjTr6No7lYkf3Z_YOnTKKs";
 const expandBtn = document.querySelector('.expand-btn');
 const userIconButton = document.querySelector('.user-settings').children[0];
 const zonarCard = document.querySelectorAll('.top-scroll-container')
@@ -229,17 +229,24 @@ expandBtn.addEventListener('click', expandMore);
 
 
 
-const btn = document.querySelector('.toggle');
-
-btn.addEventListener('click', () => {
-  document.body.classList.toggle("dark-theme");
-})
 
 
 
 //Shrink left side menu
-
+let sidebarFlag = true;
 const hamburgerIcon = document.querySelector('.hamburger-icon');
 hamburgerIcon.addEventListener('click', () => {
-  
+  const largeSidebar = document.querySelector('.left-nav-container');
+  const smallSidebar = document.querySelector('.smallest-sidebar');
+  console.log(largeSidebar);
+  console.log(smallSidebar);
+  if (sidebarFlag) {
+    largeSidebar.style.display = 'none';
+    smallSidebar.style.display = 'block';
+    sidebarFlag = false;
+  } else {
+    smallSidebar.style.display = 'none';
+    largeSidebar.style.display = 'flex';
+    sidebarFlag = true;
+  }
 })
