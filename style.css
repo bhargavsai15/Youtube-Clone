@@ -15,15 +15,15 @@ a {
   text-decoration: none;
   color: black;
 }
-.dark-theme{
+.dark-theme {
   --background-color: ##000;
-  --text-color:#999;
-  --title-color:#fff;
+  --text-color: #999;
+  --title-color: #fff;
 }
 body {
   overflow-y: hidden;
   background: var(--background-color);
-  color:var(--text-color);
+  color: var(--text-color);
   transition: background 0.8s;
 }
 .nav-bar {
@@ -44,7 +44,7 @@ nav {
   align-items: center;
   gap: 10px;
 }
-.hamburger-icon{
+.hamburger-icon {
   cursor: pointer;
 }
 .nav-bar > .left-nav > img {
@@ -116,7 +116,7 @@ nav {
   border-radius: 50%;
 }
 
-.settings-section{
+.settings-section {
   display: none;
 }
 .user-settings > img {
@@ -124,65 +124,65 @@ nav {
   width: 30px;
   height: 30px;
 }
-.user-settings>.settings-section{
+.user-settings > .settings-section {
   position: absolute;
-  right:5%;
+  right: 5%;
   width: 290px;
   background-color: white;
   border-radius: 15px;
-  box-shadow:rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;;  
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.user-settings>.settings-section>.user-details{
+.user-settings > .settings-section > .user-details {
   display: flex;
-  gap:20px;
-  padding:20px 20px 10px 20px;
+  gap: 20px;
+  padding: 20px 20px 10px 20px;
 }
-.user-details>img{
+.user-details > img {
   border-radius: 50%;
   width: 30px;
   height: 30px;
 }
-.user-info{
+.user-info {
   display: flex;
   flex-direction: column;
-  gap:15px;
+  gap: 15px;
 }
-.user-info p{
+.user-info p {
   font-family: Arial, Helvetica, sans-serif;
-  color: #0E0F0E;
+  color: #0e0f0e;
   font-size: 14px;
 }
-.user-info>div>p:nth-child(2){
+.user-info > div > p:nth-child(2) {
   padding-top: 5px;
 }
-.manage-account>a{
+.manage-account > a {
   font-size: 16px;
-  color: #2A76DA;
+  color: #2a76da;
 }
-.settings-section>.account-container>.item-section{
-  width:100%;
+.settings-section > .account-container > .item-section {
+  width: 100%;
 }
-.account-container.item-section{
+.account-container.item-section {
   /* width: 100%; */
   border: none;
   border-radius: none;
 }
-.account-container>.item-section:hover{
-  background-color:#cdcccd;
+.account-container > .item-section:hover {
+  background-color: #cdcccd;
   /* width: 100%; */
   border-radius: 0;
 }
-.settings-section>.line{
+.settings-section > .line {
   width: 100%;
 }
-.account-container{
+.account-container {
   width: 100%;
   padding: 0px 10px;
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.account-container img{
+.account-container img {
   width: 20px;
   height: 20px;
 }
@@ -201,13 +201,12 @@ nav {
   margin-left: 20px;
   gap: 10px;
   overflow-x: hidden;
-
 }
 .home {
   margin-top: 15px;
 }
 
-.left-main-content{
+.left-main-content {
   overflow-x: hidden;
   overflow-y: hidden;
   scrollbar-width: thin;
@@ -258,7 +257,7 @@ nav {
   font-weight: 100;
   padding: 5px;
 }
-.item-section>p{
+.item-section > p {
   width: 300px;
 }
 .item-section > img {
@@ -279,7 +278,7 @@ nav {
 .subscription {
   display: flex;
 }
-.left-nav-container .container-title{
+.left-nav-container .container-title {
   padding: 10px 0px;
   font-size: 14px;
   width: 100%;
@@ -299,33 +298,27 @@ nav {
   display: none;
 }
 
-
 /* Small Sidebar styling */
-.smallest-sidebar{
+.smallest-sidebar {
   margin-left: 5px;
   display: none;
 }
-.sidebar-container{
+.sidebar-container {
   display: flex;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
 }
-.item-container{
+.item-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 13px;
-  gap:5px;
+  gap: 5px;
 }
-.item-container>img{
+.item-container > img {
   width: 30px;
-
 }
-
-
-
-
 
 /* right container styling */
 .right-nav-container {
@@ -347,7 +340,7 @@ nav {
 .top-scroll-container {
   display: flex;
   gap: 15px;
-  width:;
+  width: ;
   margin-right: 30%;
   position: relative;
   position: fixed;
@@ -405,7 +398,7 @@ nav {
   border-radius: 10px;
   transition: 0.4s;
 }
-.video-card>img:hover{
+.video-card > img:hover {
   border-radius: 0;
 }
 .video-title {
@@ -440,24 +433,20 @@ nav {
   color: #363535;
 }
 
-.video-stats{
+.video-stats {
   display: flex;
-  gap:10px;
+  gap: 10px;
 }
-.title{
+.title {
   width: 260px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.dots>img{
+.dots > img {
   width: 10px;
   height: 10px;
 }
-.dots{
+.dots {
   display: none;
 }
-
-
-
-
